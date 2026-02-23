@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Write and edit prose that reads as authentically human by avoiding statistical patterns common to LLM output.",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {

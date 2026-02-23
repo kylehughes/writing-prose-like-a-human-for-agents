@@ -1,0 +1,21 @@
+{
+  "name": "writing-prose-like-a-human",
+  "owner": {
+    "name": "Kyle Hughes",
+    "email": "kyle@kylehugh.es"
+  },
+  "metadata": {
+    "description": "Write and edit prose that reads as authentically human by avoiding statistical patterns common to LLM output.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "writing-prose-like-a-human",
+      "description": "Reference documentation for writing prose like a human, plus an autonomous prose-editing agent that rewrites text to remove AI writing patterns.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/writing-prose-like-a-human"],
+      "agents": ["./agents/prose-humanizer.md"]
+    }
+  ]
+}

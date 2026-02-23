@@ -1,0 +1,19 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package skill
+        run: cd skills/writing-prose-like-a-human && zip -r ../../writing-prose-like-a-human-skill.zip .
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: writing-prose-like-a-human-skill.zip

@@ -1,5 +1,5 @@
 {
-  "name": "writing-prose-like-a-human",
+  "name": "writing-prose-like-a-human-for-agents",
   "owner": {
     "name": "Kyle Hughes",
     "email": "kyle@kylehugh.es"
@@ -10,7 +10,7 @@
   },
   "plugins": [
     {
-      "name": "writing-prose-like-a-human",
+      "name": "writing-prose-like-a-human-for-agents",
       "description": "Reference documentation for writing prose like a human, plus an autonomous prose-editing agent that rewrites text to remove AI writing patterns.",
       "source": "./",
       "strict": false,

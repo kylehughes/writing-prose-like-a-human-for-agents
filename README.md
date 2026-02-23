@@ -58,7 +58,7 @@ To install this plugin for your personal use in Claude Code:
 
 2. Install the plugin:
    ```bash
-   /plugin install writing-prose-like-a-human@writing-prose-like-a-human-for-agents
+   /plugin install writing-prose-like-a-human-for-agents@writing-prose-like-a-human-for-agents
    ```
 
 #### Project Configuration
@@ -68,7 +68,7 @@ To automatically provide this plugin to everyone working in a repository, config
 ```json
 {
   "enabledPlugins": {
-    "writing-prose-like-a-human@writing-prose-like-a-human-for-agents": true
+    "writing-prose-like-a-human-for-agents@writing-prose-like-a-human-for-agents": true
   },
   "extraKnownMarketplaces": {
     "writing-prose-like-a-human-for-agents": {

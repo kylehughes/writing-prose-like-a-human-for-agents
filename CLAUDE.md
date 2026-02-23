@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repository Contains
 
-A Claude Code plugin (`writing-prose-like-a-human`) with one skill and one subagent for writing and editing prose that avoids statistical patterns common to LLM output. Derived from Wikipedia's "Signs of AI writing" page.
+A Claude Code plugin (`writing-prose-like-a-human-for-agents`) with one skill and one subagent for writing and editing prose that avoids statistical patterns common to LLM output. Derived from Wikipedia's "Signs of AI writing" page.
 
 ## Repository Structure
 

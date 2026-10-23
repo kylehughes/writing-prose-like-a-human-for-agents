@@ -2,7 +2,7 @@
 
 [![Claude Code Plugin](https://img.shields.io/badge/Claude_Code_Plugin-555?logo=claude)](https://code.claude.com/docs/en/plugins)
 [![Codex Plugin][codex_plugin_badge]](https://developers.openai.com/plugins/build/plugins)
-[![CI](https://github.com/kylehughes/writing-prose-like-a-human-for-agents/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/kylehughes/writing-prose-like-a-human-for-agents/actions/workflows/check.yml)
+[![CI](https://github.com/kylehughes/writing-prose-like-a-human-for-agents/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kylehughes/writing-prose-like-a-human-for-agents/actions/workflows/ci.yml)
 [![Latest Release](https://img.shields.io/github/v/release/kylehughes/writing-prose-like-a-human-for-agents)](https://github.com/kylehughes/writing-prose-like-a-human-for-agents/releases)
 
 A shared prose-editing skill for Claude Code and Codex. It reduces generic phrasing, inflated claims, and repetitive structure while preserving facts and the author's voice.

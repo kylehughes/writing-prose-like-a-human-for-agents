@@ -1,0 +1,20 @@
+{
+  "name": "writing-prose-like-a-human-for-agents",
+  "version": "1.2.0",
+  "description": "Write and edit clear, specific prose while preserving facts, uncertainty, and the author's voice.",
+  "author": {
+    "name": "Kyle Hughes",
+    "email": "kyle@kylehugh.es",
+    "url": "https://kylehugh.es"
+  },
+  "homepage": "https://github.com/kylehughes/writing-prose-like-a-human-for-agents",
+  "repository": "https://github.com/kylehughes/writing-prose-like-a-human-for-agents",
+  "license": "CC-BY-SA-4.0",
+  "keywords": [
+    "writing",
+    "editing",
+    "prose",
+    "documentation",
+    "agent-skills"
+  ]
+}

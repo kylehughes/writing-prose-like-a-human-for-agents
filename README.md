@@ -1,69 +1,28 @@
 # Writing Prose Like a Human for Agents
 
-[![Agent Skill](https://img.shields.io/badge/Agent_Skill-555?logo=claude)](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+[![Agent Skill](https://img.shields.io/badge/Agent_Skill-555)](https://agentskills.io)
 [![Claude Code Plugin](https://img.shields.io/badge/Claude_Code_Plugin-555?logo=claude)](https://code.claude.com/docs/en/plugins)
+[![Codex Plugin](https://img.shields.io/badge/Codex_Plugin-555)](https://developers.openai.com/plugins/build/plugins)
 [![Latest Release](https://img.shields.io/github/v/release/kylehughes/writing-prose-like-a-human-for-agents)](https://github.com/kylehughes/writing-prose-like-a-human-for-agents/releases)
 
-*A skill and subagent that help AI agents write and edit prose that doesn't read like AI.*
+A shared prose-editing skill for Claude Code and Codex. It reduces generic phrasing, inflated claims, and repetitive structure while preserving facts and the author's voice.
 
-## About
-
-A Claude Code plugin with an Agent Skill and a Subagent for writing prose that avoids statistical patterns common to LLM output.
-
-- **Agent Skill**: Vocabulary watchlists, structural checks, and before/after examples for identifying AI writing patterns.
-- **Subagent**: Edits files in place to remove AI writing patterns. Uses the Agent Skill.
-
-## Usage
-
-The Subagent edits prose in place, applying five rules: cut significance inflation, use plain verbs, end sentences at the fact, vary rhythm, earn every adjective. Delegate to it from your main agent to keep prose edits out of your context window.
-
-The Agent Skill has the vocabulary watchlist and rules. Use it directly when you want more control than the Subagent gives you.
-
-### Automatic
-
-Claude Code sees both the Agent Skill and Subagent and can use them on its own when it thinks they're relevant. In practice this is nondeterministic.
-
-### Manual
-
-Tell Claude Code what you want in plain language.
-
-> use the prose humanizer to clean up the README
-
-> run the prose humanizer agent on this file
-
-> rewrite this so it doesn't sound like AI
-
-## What's Included
-
-### Agent Skill: `writing-prose-like-a-human`
-
-Five rules for human-sounding prose, a vocabulary watchlist of words that appear at elevated rates in LLM output, structural patterns to avoid, and a self-edit checklist. Includes a full reference with before/after examples.
-
-### Subagent: `prose-humanizer`
-
-Applies the five rules in order, edits files in place, and returns a summary of changes. Cuts rather than rephrases. Uses the `writing-prose-like-a-human` skill.
+The guidance adapts [Wikipedia's “Signs of AI writing” essay](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) into five editing rules: be specific, use plain verbs, remove empty commentary, vary rhythm, and earn every adjective. Vocabulary and formatting patterns prompt judgment; they are not word bans or evidence of AI authorship.
 
 ## Installation
 
 ### Claude Code
 
-#### Personal Usage
+Run these commands inside Claude Code:
 
-To install this plugin for your personal use in Claude Code:
+```text
+/plugin marketplace add kylehughes/writing-prose-like-a-human-for-agents
+/plugin install writing-prose-like-a-human-for-agents@writing-prose-like-a-human-for-agents
+```
 
-1. Add the marketplace:
-   ```bash
-   /plugin marketplace add kylehughes/writing-prose-like-a-human-for-agents
-   ```
+Start a new session after installation. The plugin includes the shared skill and a `prose-humanizer` subagent for delegated edits.
 
-2. Install the plugin:
-   ```bash
-   /plugin install writing-prose-like-a-human-for-agents@writing-prose-like-a-human-for-agents
-   ```
-
-#### Project Configuration
-
-To automatically provide this plugin to everyone working in a repository, configure the repository's `.claude/settings.json`:
+For a team repository, merge the following into `.claude/settings.json`:
 
 ```json
 {
@@ -81,11 +40,80 @@ To automatically provide this plugin to everyone working in a repository, config
 }
 ```
 
-When team members open the project, Claude Code will prompt them to install the plugin.
+Claude Code prompts team members to install the plugin when they trust the repository's marketplace configuration. See [Claude Code's marketplace documentation](https://code.claude.com/docs/en/plugin-marketplaces).
 
-### Manual Installation
+### Codex
 
-The Agent Skill conforms to the [Agent Skills](https://agentskills.io) open standard and works with any compatible tool, not just Claude Code. Download `writing-prose-like-a-human-skill.zip` from the [releases page](https://github.com/kylehughes/writing-prose-like-a-human-for-agents/releases) and add it to your agent's skills directory. The raw content is also available in this repository's `skills/` and `agents/` directories.
+With a Codex CLI version that supports plugin marketplaces, run:
+
+```sh
+codex plugin marketplace add kylehughes/writing-prose-like-a-human-for-agents
+codex plugin add writing-prose-like-a-human-for-agents@writing-prose-like-a-human-for-agents
+```
+
+Start a new session after installation. The same skill is available in Codex; the Claude Markdown subagent is not registered as a native Codex agent. Codex can apply the skill directly or pass its instructions to an available native worker when delegation suits the task.
+
+These commands use Codex's [plugin marketplace support](https://learn.chatgpt.com/docs/cli/reference#codex-plugin-marketplace). The repository includes a portable `plugin.json`, a compatible `.codex-plugin/plugin.json`, and a Codex marketplace catalog.
+
+### Standalone skill
+
+Download `writing-prose-like-a-human-skill.zip` from the [releases page](https://github.com/kylehughes/writing-prose-like-a-human-for-agents/releases). Extract it into a directory named `writing-prose-like-a-human` in your host's skills directory. The archive has `SKILL.md` at its root and includes its reference, attribution, UI metadata, and license.
+
+For Codex, a user-level skill can live at `~/.agents/skills/writing-prose-like-a-human/`. Use either the standalone skill or the plugin to avoid duplicate discovery. Other [Agent Skills](https://agentskills.io) hosts can use the same directory.
+
+## Usage
+
+Ask for the edit in plain language:
+
+> Edit this README for clarity while preserving its technical meaning.
+
+> Make this paragraph less formulaic. Keep the facts and uncertainty intact.
+
+> Review this draft for inflated claims without editing the file.
+
+The skill can be selected automatically when its description matches your task. To select it explicitly in Codex, type `$` and choose `writing-prose-like-a-human-for-agents:writing-prose-like-a-human` from the skill picker. A standalone installation uses `$writing-prose-like-a-human`. In Claude Code, use `/writing-prose-like-a-human-for-agents:writing-prose-like-a-human`, or ask Claude to delegate to the `prose-humanizer` agent.
+
+Reviews stay read-only. Rewrites preserve supplied facts, citations, qualifications, and the intended voice; they do not invent details to make a passage more specific. Code, commands, identifiers, frontmatter, and structured data stay intact unless you ask to change them.
+
+The short [skill](skills/writing-prose-like-a-human/SKILL.md) contains the workflow. Its [reference](skills/writing-prose-like-a-human/REFERENCE.md) adds contextual vocabulary checks and before/after examples. No extra tools, credentials, or runtime dependencies are needed to use the skill.
+
+## Development
+
+Use Python 3.10 or later for the repository checks and packaging:
+
+```sh
+python3 scripts/check.py
+python3 -m unittest discover -s scripts -p 'test_*.py'
+python3 scripts/package.py
+```
+
+The checks verify manifest consistency, packaged paths, skill metadata, local references, and attribution. Packaging creates the standalone skill archive and `dist/writing-prose-like-a-human-plugin.zip`, which contains the shared skill, Claude subagent, runtime manifests, and license.
+
+Validate a local checkout with Claude Code:
+
+```sh
+claude plugin validate .claude-plugin/plugin.json
+claude plugin validate .claude-plugin/marketplace.json
+claude --plugin-dir .
+```
+
+Claude's validator warns that the checkout's `CLAUDE.md` is not installed plugin context. It imports maintainer instructions from `AGENTS.md`; both files are excluded from the plugin archive. Validate the extracted plugin archive with `--strict` to check the shipping contents without that repository-only warning.
+
+To test the local marketplace in Codex, run `codex plugin marketplace add "$PWD"`, install the plugin with the command above, and start a new session. When switching between a local checkout and the GitHub marketplace, remove the existing source with `codex plugin marketplace remove writing-prose-like-a-human-for-agents` before adding the replacement.
+
+### Source updates
+
+Read the current Wikipedia essay before updating its adaptation. Record the consulted revision and changes in [ATTRIBUTION.md](skills/writing-prose-like-a-human/ATTRIBUTION.md). Check every example for invented facts, lost qualifications, and changes in meaning. Keep the entrypoint short and load detailed guidance from the reference as needed.
+
+### Releases
+
+From a clean `main` branch, check a proposed release without changing the repository:
+
+```sh
+./release.sh --dry-run 1.2.1
+```
+
+Run `./release.sh 1.2.1` to update all manifest versions, validate and package the content, commit, tag, and push the branch and new tag together. The release workflow checks that the tag matches the manifests and publishes both ZIP archives. The existing standalone archive name and layout remain compatible with earlier releases.
 
 ## Contributions
 
@@ -108,4 +136,4 @@ Not accepting source contributions. Bug reports are welcome.
 
 ## License
 
-Writing Prose Like a Human Claude Code Plugin is derived from [Wikipedia:Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) by Wikipedia contributors and is available under the **[Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/)**. See `LICENSE` for details.
+Derived from Wikipedia's “Signs of AI writing” by Wikipedia contributors and distributed under [CC BY-SA 4.0](LICENSE). See [ATTRIBUTION.md](skills/writing-prose-like-a-human/ATTRIBUTION.md) for the source revision and adaptation history.

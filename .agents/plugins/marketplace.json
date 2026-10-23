@@ -1,0 +1,20 @@
+{
+  "name": "writing-prose-like-a-human-for-agents",
+  "interface": {
+    "displayName": "Writing Prose Like a Human"
+  },
+  "plugins": [
+    {
+      "name": "writing-prose-like-a-human-for-agents",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

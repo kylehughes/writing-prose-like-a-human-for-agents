@@ -1,0 +1,4 @@
+interface:
+  display_name: "Writing Prose Like a Human"
+  short_description: "Edit prose for clarity while preserving facts and voice"
+  default_prompt: "Use $writing-prose-like-a-human to edit this draft for clarity while preserving its facts and voice."

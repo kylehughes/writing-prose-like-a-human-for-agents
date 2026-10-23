@@ -5,17 +5,15 @@
     "email": "kyle@kylehugh.es"
   },
   "metadata": {
-    "description": "Write and edit prose that reads as authentically human by avoiding statistical patterns common to LLM output.",
-    "version": "1.1.0"
+    "description": "Write and edit clear, specific prose while preserving facts, uncertainty, and the author's voice.",
+    "version": "1.2.0"
   },
   "plugins": [
     {
       "name": "writing-prose-like-a-human-for-agents",
-      "description": "Reference documentation for writing prose like a human, plus an autonomous prose-editing agent that rewrites text to remove AI writing patterns.",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/writing-prose-like-a-human"],
-      "agents": ["./agents/prose-humanizer.md"]
+      "description": "Write and edit clear, specific prose while preserving facts, uncertainty, and the author's voice.",
+      "version": "1.2.0",
+      "source": "./"
     }
   ]
 }
